@@ -19,7 +19,7 @@ type app struct {
 }
 
 func run(ctx context.Context, a *app) error {
-	emojis, err := a.searcher.Get().Search(ctx, "pig")
+	emojis, err := a.searcher.Get().Search(ctx, "smile")
 	if err != nil {
 		return err
 	}
