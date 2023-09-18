@@ -1,0 +1,2 @@
+[single]
+listeners.emoji = {address = "localhost:9000"}
