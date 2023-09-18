@@ -15,9 +15,10 @@ import (
 
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/weaver/Main",
-		Iface: reflect.TypeOf((*weaver.Main)(nil)).Elem(),
-		Impl:  reflect.TypeOf(app{}),
+		Name:      "github.com/ServiceWeaver/weaver/Main",
+		Iface:     reflect.TypeOf((*weaver.Main)(nil)).Elem(),
+		Impl:      reflect.TypeOf(app{}),
+		Listeners: []string{"emoji"},
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
 			return main_local_stub{impl: impl.(weaver.Main), tracer: tracer}
 		},
@@ -28,7 +29,7 @@ func init() {
 		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
 			return main_reflect_stub{caller: caller}
 		},
-		RefData: "⟦c9c9b6d2:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→serviceweaver/Searcher⟧\n",
+		RefData: "⟦c9c9b6d2:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→serviceweaver/Searcher⟧\n⟦ae8d729f:wEaVeRlIsTeNeRs:github.com/ServiceWeaver/weaver/Main→emoji⟧\n",
 	})
 	codegen.Register(codegen.Registration{
 		Name:  "serviceweaver/Searcher",
