@@ -20,7 +20,7 @@ type app struct {
 }
 
 func run(ctx context.Context, a *app) error {
-	a.Logger(ctx).Info("listener active.", "addr", a.lis)
+	a.Logger(ctx).Info("listener active", "addr", a.lis)
 	emojis, err := a.searcher.Get().Search(ctx, "city")
 	if err != nil {
 		return err
