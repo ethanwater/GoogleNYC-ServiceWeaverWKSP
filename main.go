@@ -9,7 +9,6 @@ import (
 
 		"github.com/ServiceWeaver/weaver"
 )
-var indexHtml string
 
 func main(){
 	if err := weaver.Run(context.Background(), run); err != nil {
@@ -26,13 +25,6 @@ type app struct {
 func run(ctx context.Context, a *app) error {
 	a.Logger(ctx).Info("listener active", "addr", a.listener)
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { 
- 		if r.URL.Path != "/" { 
- 			http.NotFound(w, r) 
- 			return 
- 		} 
- 		fmt.Fprint(w, indexHtml) 
- 	})
 
 	http.HandleFunc("/search", func(w http.ResponseWriter, r *http.Request) {
 		query := r.URL.Query().Get("q")
