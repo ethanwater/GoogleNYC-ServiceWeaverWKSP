@@ -17,7 +17,9 @@ type searcher struct {
 	weaver.Implements[Searcher]
 }
 
-func (s *searcher) Search(_ context.Context, q string) ([]string, error) {
+func (s *searcher) Search(ctx context.Context, q string) ([]string, error) {
+	logger := s.Logger(ctx)
+	logger.Debug("Search", "query", q)
 	results := []string{}
 	text := strings.Fields(strings.ToLower(q))
 	for emoji, labels := range emojis {
