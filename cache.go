@@ -14,9 +14,14 @@ type Cache interface {
 
 type cache struct {
 		weaver.Implements[Cache]
+		weaver.WithRouter[route]
     mu sync.Mutex
     emoji map[string][]string
 }
+
+type route struct {}
+func (route) Get(_ context.Context, key string) string { return key }
+func (route) Put(_ context.Context, key string, _ []string) string { return key }
 
 func (c *cache) Init(context.Context) error { 
  	c.emoji = map[string][]string{} 

@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"sort"
 	"strings"
 
 	"github.com/ServiceWeaver/weaver" 
@@ -29,15 +28,13 @@ func (s *searcher) Search(ctx context.Context, q string) ([]string, error) {
 		return emoji, nil
 	}
 
-	text := strings.Fields(strings.ToLower(q))
+	input := strings.Fields(strings.ToLower(q))
 	results := []string{}
 	for emoji, labels := range emojis {
-		if match(labels, text) {
+		if match(labels, input) {
 			results = append(results, emoji)
 		} 	
 	}
-	sort.Strings(results)
-
 
 	//Put
 	if err := s.cache.Get().Put(ctx, q, results); err != nil {
@@ -47,8 +44,8 @@ func (s *searcher) Search(ctx context.Context, q string) ([]string, error) {
 	return results, nil
 }
 
-func match(labels, text []string) bool {
-	for _, t := range text {
+func match(labels, input []string) bool {
+	for _, t := range input {
 		if slices.Contains(labels, t) {
 			return true			
 		} 	
