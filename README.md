@@ -1,5 +1,5 @@
 # wksp-GoogleNYC-serviceweaver
-ServiceWeaver application I made during the Server Weaver workshop at Google NYC on 9/14/2023.
+*ServiceWeaver based application I made during the workshop at Google NYC on 9/14/2023.*
 ![alt text](images/process.jpg)
 
 ## resources
